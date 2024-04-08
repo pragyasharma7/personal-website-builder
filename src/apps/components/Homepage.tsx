@@ -21,7 +21,7 @@ export default function Homepage() {
         <Introduction />
       </Section>
 
-      {sectionSlice?.about.description?.length === 0 ? (
+      {sectionSlice?.about.description?.length >= 0 ? (
         <Section>
           <AboutUs />
         </Section>

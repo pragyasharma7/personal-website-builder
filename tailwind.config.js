@@ -12,7 +12,8 @@ export default {
         bgHomepage: '#F5F5F5',
         bgCards: '#FFFFFF',
         bgBtn: '#0085FF',
-        placeholderText: '#C6C6C6'
+        placeholderText: '#C6C6C6',
+        bgIconHover: '#E4E4E4' 
       }
     },
   },

@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import IntroductionSlice from "./Introduction/IntroductionSlice";
+import IntroductionSlice from "./IntroductionSlice";
 import SiteInfoSlice from "./SiteInfo/SiteInfoSlice";
 import SectionSlice from "./SectionSlice";
 import SaveChangesSlice from "./SaveChangesSlice";

@@ -1,19 +1,27 @@
 import { PlusIcon } from "@radix-ui/react-icons";
 import { Popover } from "@radix-ui/themes";
 import { useDispatch, useSelector } from "react-redux";
-import { addAboutSection, addCTASection, addExperienceSection, addProjectSection, addSkillsetSection } from "../State/SectionSlice";
-
-interface Sections {
-  section: String;
-  displayName: String;
-}
+import {
+  addAboutSection,
+  addCTASection,
+  addExperienceSection,
+  addProjectSection,
+  addSkillsetSection,
+} from "../State/SectionSlice";
+import {
+  About,
+  Experience,
+  Project,
+  SectionsDropdown,
+  SkillSet,
+} from "../Interface/Section";
 
 export default function AddSections() {
   const sectionSlice = useSelector((store) => store.sections);
   const dispatch = useDispatch();
 
   console.log(sectionSlice);
-  const sections: Sections[] = [
+  const sections: SectionsDropdown[] = [
     {
       section: "about",
       displayName: "📌 Add About you",
@@ -37,21 +45,43 @@ export default function AddSections() {
   ];
 
   function AddSection(section: String) {
-    const about = {
-      title: 'About Me',
-      description: '',
-      placeholder: 'Start writing...',
-    }
-    if (section === "about") dispatch(addAboutSection(about));
-    else if (section === "skillset") dispatch(addSkillsetSection([]));
-    else if (section === "project") dispatch(addProjectSection([]));
-    else if (section === "experience") dispatch(addExperienceSection([]));
-    else if (section === "cta") dispatch(addCTASection([]));
-    else return;
+    if (section === "about") {
+      const about: About = {
+        description: "",
+      };
+      dispatch(addAboutSection(about));
+    } else if (section === "skillset") {
+      const skillset: SkillSet = {
+        title: "",
+        description: "",
+      };
+      dispatch(addSkillsetSection(skillset));
+    } else if (section === "project") {
+      const project: Project = {
+        logo: "",
+        title: "",
+        link: "",
+        description: "",
+      };
+      dispatch(addProjectSection(project));
+    } else if (section === "experience") {
+      const experience: Experience = {
+        logo: "",
+        comapnyTitle: "",
+        location: "",
+        timeline: "",
+        designation: "",
+        description: "",
+      };
+      dispatch(addExperienceSection(experience));
+    } else if (section === "cta") {
+      //  const experience: Experience = {
+      //    title: "",
+      //    description: "",
+      //  };
+      //  dispatch(addCTASection([]));
+    } else return;
 
-    // add section in slice
-    //scroll user down to sections div
-    //close popover
     console.log(sectionSlice);
     return;
   }
@@ -74,7 +104,6 @@ export default function AddSections() {
               <Popover.Close key={i}>
                 <div
                   className="p-2.5 w-full text-sm font-semibold flex hover:bg-bgGray cursor-pointer rounded-xl"
-
                   onClick={() => AddSection(section.section)}
                 >
                   <div className="w-[21px] h-[21px] bg-bgGray rounded-3xl flex hover:bg-white">
@@ -85,7 +114,6 @@ export default function AddSections() {
               </Popover.Close>
             );
           })}
-
         </div>
       </Popover.Content>
     </Popover.Root>

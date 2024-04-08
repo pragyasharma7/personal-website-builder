@@ -4,23 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { addImage } from "../State/SiteInfo/SiteInfoSlice";
 
 export default function Navbar() {
+  const data: any = useSelector((store) => store.siteInfo);
+  // const image = useSelector((store) => (imageData = store.image.image));
 
-   const data:any = useSelector((store)=>store.siteInfo);
-    // const image = useSelector((store) => (imageData = store.image.image));
+  console.log(data);
 
-  console.log(data)
+  // const props = {
+  //   image: data.image,
+  //   addImage: addImage,
 
-  const props = {
-    image: data.image,
-    addImage: addImage,
-     style:{
-    width: '40px',
-    height: '40px',
-    'borderRadius': '10%'
-    }
-  }
-const key = 1
-  
+  // }
+  const style = {
+    width: "40px",
+    height: "40px",
+    borderRadius: "10%",
+  };
+
   return (
     <Box className="pt-10">
       <Flex gap="1">
@@ -29,7 +28,7 @@ const key = 1
           fallback="A"
           className="cursor-pointer"
         /> */}
-            <ImageUpload image={props} key={key}/>
+        <ImageUpload style={style} source={"navBar"} />
         <p className="text-sm p-2.5 font-bold h-10">Site Builder</p>
       </Flex>
     </Box>

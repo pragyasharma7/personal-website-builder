@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const SaveChangesSlice = createSlice({
   name: "saveChangesSlice",
   initialState: {
-    save: false
+    save: true
   },
   reducers: {
     changesSaved: (state, action) => {

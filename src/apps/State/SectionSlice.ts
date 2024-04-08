@@ -12,9 +12,10 @@ const SectionSlice = createSlice({
   reducers: {
     addAboutSection: (state, action) => {
       state.about = action.payload;
+      console.log(state, action)
     },
     addSkillsetSection: (state, action) => {
-      state.skillset = action.payload;
+      state.skillset.push(action.payload);
     },
     addProjectSection: (state, action) => {
       state.project = action.payload;

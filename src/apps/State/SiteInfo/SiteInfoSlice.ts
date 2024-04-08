@@ -7,7 +7,7 @@ const SiteInfoSlice = createSlice({
     title: ""
   },
   reducers: {
-    addImage: (state, action) => {
+    addNavbarImage: (state, action) => {
       state.image = action.payload;
       console.log(state, action)
     },
@@ -17,6 +17,6 @@ const SiteInfoSlice = createSlice({
   },
 });
 
-export const { addImage, addTitle } =
+export const { addNavbarImage, addTitle } =
   SiteInfoSlice.actions;
 export default SiteInfoSlice.reducer;
