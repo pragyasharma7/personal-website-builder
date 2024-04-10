@@ -1,23 +1,6 @@
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
-import { useDispatch, useSelector } from "react-redux";
-import { changesSaved } from "../../State/SaveChangesSlice";
-import { addAboutSection } from "../../State/SectionSlice";
 
-export default function ShowEditDelete() {
-  // const saveChangesSlice = useSelector((store) => store.saveChanges);
-  const aboutSlice = useSelector((store) => store.sections.about);
-  console.log(aboutSlice);
-
-  const dispatch = useDispatch();
-
-  function handleSave() {
-    dispatch(changesSaved(true));
-  }
-
-  function removeAboutSection() {
-    dispatch(addAboutSection({}));
-  }
-
+export default function ShowEditDelete({ handleSave, removeAboutSection }) {
   return (
     <div className="flex justify-end mb-4 mr-4">
       <button

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const SectionSlice = createSlice({
   name: "sectionSlice",
   initialState: {
@@ -13,18 +12,21 @@ const SectionSlice = createSlice({
     addAboutSection: (state, action) => {
       state.about = action.payload;
       console.log(state, action)
+      // return {
+      //   ...state, about:action.payload
+      // }
     },
     addSkillsetSection: (state, action) => {
       state.skillset.push(action.payload);
     },
     addProjectSection: (state, action) => {
-      state.project = action.payload;
+      state.project.push(action.payload);
     },
     addExperienceSection: (state, action) => {
-      state.experience = action.payload;
+      state.experience.push(action.payload);
     },
     addCTASection: (state, action) => {
-      state.cta = action.payload;
+      state.cta.push(action.payload);
     },
   },
 });

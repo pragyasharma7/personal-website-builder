@@ -71,7 +71,7 @@
 .other ul {
   padding: 0;
   margin: 0;
-  list-style-type: none;
+  list-style-type: disc;
 }
 
 .App {
@@ -111,7 +111,6 @@ h1 {
 }
 
 .editor-input {
-  min-height: 150px;
   resize: none;
   font-size: 15px;
   caret-color: rgb(5, 5, 5);
@@ -312,7 +311,7 @@ h1 {
 }
 
 .editor-nested-listitem {
-  list-style-type: none;
+  list-style-type: disc;
 }
 
 pre::-webkit-scrollbar {

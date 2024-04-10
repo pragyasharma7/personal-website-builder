@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import LexicalTextarea from "./Common/LexicalTextarea";
 import SaveChanges from "./Common/SaveChanges";
 import ShowEditDelete from "./Common/ShowEditDelete";
-import { changesSaved } from "../State/SaveChangesSlice";
 import { addAboutSection } from "../State/SectionSlice";
 
 export default function AboutUs() {
@@ -12,20 +11,11 @@ export default function AboutUs() {
   const aboutSlice = useSelector((store) => store.sections.about);
   const saveChangesSlice = useSelector((store) => store.saveChanges);
 
-  const [text, setText] = useState("");
-
-  useEffect(() => {
-    // saveChangesSlice.save
-    //   ? dispatch(addAboutSection({ description: text }))
-    //   : setText(aboutSlice.description);
-
-    console.log("calling dispatch");
-  }, [saveChangesSlice]);
+  const [currText, setCurrText] = useState("");
+  const [showSave, setshowSave] = useState(true);
 
   console.log(aboutSlice, saveChangesSlice.save);
-  const setAbout = (data) => {
-    setText(data);
-  };
+  // const onfig = lexicalEditorConfig;
   const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -39,43 +29,72 @@ export default function AboutUs() {
     fontSize: "16px",
   };
 
+  const handleSave = () => {
+    setshowSave((prev) => !prev);
+    dispatch(addAboutSection({ description: currText }));
+    console.log(aboutSlice);
+  };
+
+  const handleContent = (content: string) => {
+    console.log(content);
+    setCurrText(content);
+  };
+
+  const handleCancel = () => {
+    setshowSave((prev) => !prev);
+    dispatch(addAboutSection({ description: aboutSlice.description }));
+    console.log(aboutSlice);
+  };
+
+  const removeAboutSection = () => {
+    dispatch(addAboutSection({}));
+  };
+
   {
-    return saveChangesSlice.save ? (
-      <Box className="w-full">
-        <Flex gap="5">
-          <Box className="w-3/6"></Box>
-          <Box className="w-full h-fit">
-            {saveChangesSlice.save ? <SaveChanges /> : null}
-            {/* {isHovering && !saveChangesSlice.save ? <ShowEditDelete /> : null} */}
-            <Box className="border rounded-3xl shadow p-8">
-              <button onClick={setAbout}></button>
-              <Heading className="text-left mb-8">About Me</Heading>
-              {/* <LexicalTextarea styles={style} /> */}
-              <input
-                type="text"
-                onChange={(event) => setAbout(event.target.value)}
-                value={text}
-              />
-            </Box>
-          </Box>
-        </Flex>
-      </Box>
-    ) : (
+    return (
       <Box
         className="w-full"
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
       >
         <Flex gap="5">
-          <Box className="w-3/6"></Box>
+          <Box className="w-5/12"></Box>
           <Box className="w-full h-fit">
-            {saveChangesSlice.save ? <SaveChanges /> : null}
+            {showSave ? (
+              <SaveChanges
+                handleSave={handleSave}
+                handleCancel={handleCancel}
+              />
+            ) : null}
 
-            {isHovering && !saveChangesSlice.save ? <ShowEditDelete /> : null}
+            {isHovering && !showSave ? (
+              <ShowEditDelete
+                handleSave={handleSave}
+                removeAboutSection={removeAboutSection}
+              />
+            ) : (
+              <Box className="mb-4 mr-4 h-[32px]"></Box>
+            )}
 
-            <Box className="border rounded-3xl shadow p-8">
+            {/* <Box className="border rounded-3xl shadow p-8">
               <Heading className="text-left mb-8">About Me</Heading>
-              <p>{aboutSlice.description}</p>
+              <pre>{aboutSlice.description}</pre>
+            </Box> */}
+            <Box
+              className={` p-8 ${
+                showSave
+                  ? "border-[#828282] border shadow rounded-3xl "
+                  : "border-none"
+              }`}
+            >
+              <Heading className="text-left mb-8">About Me</Heading>
+              <LexicalTextarea
+                styles={style}
+                placeholder={"Start writing..."}
+                handleContent={handleContent}
+                prevContent={aboutSlice.description}
+                isCompEditable={showSave}
+              />
             </Box>
           </Box>
         </Flex>

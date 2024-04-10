@@ -12,38 +12,20 @@ import {
   About,
   Experience,
   Project,
+  Sections,
   SectionsDropdown,
   SkillSet,
 } from "../Interface/Section";
+import { sectionsLists } from "../utils/Constants";
 
 export default function AddSections() {
+  console.log(sectionsLists);
+  const sectionsList: SectionsDropdown[] = sectionsLists;
+
   const sectionSlice = useSelector((store) => store.sections);
   const dispatch = useDispatch();
 
   console.log(sectionSlice);
-  const sections: SectionsDropdown[] = [
-    {
-      section: "about",
-      displayName: "📌 Add About you",
-    },
-    {
-      section: "skillset",
-      displayName: "💡 Add Skillsets",
-    },
-    {
-      section: "project",
-      displayName: "🛠️ Add Projects",
-    },
-    {
-      section: "experience",
-      displayName: "🌐 Add Experience",
-    },
-    {
-      section: "cta",
-      displayName: "🔗 Add CTA",
-    },
-  ];
-
   function AddSection(section: String) {
     if (section === "about") {
       const about: About = {
@@ -52,12 +34,14 @@ export default function AddSections() {
       dispatch(addAboutSection(about));
     } else if (section === "skillset") {
       const skillset: SkillSet = {
+        id: 1,
         title: "",
         description: "",
       };
       dispatch(addSkillsetSection(skillset));
     } else if (section === "project") {
       const project: Project = {
+        id: 1,
         logo: "",
         title: "",
         link: "",
@@ -66,6 +50,7 @@ export default function AddSections() {
       dispatch(addProjectSection(project));
     } else if (section === "experience") {
       const experience: Experience = {
+        id: 1,
         logo: "",
         comapnyTitle: "",
         location: "",
@@ -99,7 +84,7 @@ export default function AddSections() {
         className="left-[148%]"
       >
         <div className="p-4">
-          {sections.map((section, i) => {
+          {sectionsList.map((section, i) => {
             return (
               <Popover.Close key={i}>
                 <div

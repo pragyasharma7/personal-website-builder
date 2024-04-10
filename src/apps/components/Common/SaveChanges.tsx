@@ -1,23 +1,10 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { changesSaved } from "../../State/SaveChangesSlice";
-
-export default function SaveChanges() {
-  const saveChangesSlice = useSelector((store) => store.saveChanges);
-  const dispatch = useDispatch();
-  const [save, setSave] = useState(true);
-  function handleSave() {
-    setSave(false);
-    dispatch(changesSaved(false));
-    console.log(save);
-  }
-
+export default function SaveChanges({ handleSave, handleCancel }) {
   {
-    return save ? (
+    return (
       <div className="flex justify-end mb-4 mr-4">
         <button
           className="bg-transparent text-black mr-2 w-[87px] h-[30px] font-semibold"
-          onClick={handleSave}
+          onClick={handleCancel}
         >
           Cancel
         </button>
@@ -28,6 +15,6 @@ export default function SaveChanges() {
           Save
         </button>
       </div>
-    ) : null;
+    );
   }
 }

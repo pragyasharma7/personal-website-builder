@@ -9,11 +9,14 @@ export default {
         bgGray: '#EFEFEF',
         bgNavBar: '#232323',
         border: '#D5D5D5',
+                borderSections: '#828282',
+
         bgHomepage: '#F5F5F5',
         bgCards: '#FFFFFF',
         bgBtn: '#0085FF',
         placeholderText: '#C6C6C6',
-        bgIconHover: '#E4E4E4' 
+        bgIconHover: '#E4E4E4' ,
+        addCardBkg: '#DADADA'
       }
     },
   },
