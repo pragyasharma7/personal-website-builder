@@ -1,12 +1,12 @@
 import { Box, Flex, Grid, Heading } from "@radix-ui/themes";
 import { useDispatch, useSelector } from "react-redux";
-import { SkillSet } from "../Interface/Section";
-import { addSkillsetSection } from "../State/SectionSlice";
+import { SkillSet } from "../../Interface/Section";
+import { addSkillsetSection } from "../../State/SectionSlice";
 import { useState } from "react";
-import SaveChanges from "./Common/SaveChanges";
-import ShowEditDelete from "./Common/ShowEditDelete";
-import LexicalTextarea from "./Common/LexicalTextarea";
-import { isEditable } from "../State/LexicalEditorSlice";
+import SaveChanges from "../Atoms/SaveChanges";
+import ShowEditDelete from "../Atoms/ShowEditDelete";
+import LexicalTextarea from "../Common/LexicalEditor/LexicalTextarea";
+import { isEditable } from "../../State/LexicalEditorSlice";
 
 export default function Skillsets() {
   const dispatch = useDispatch();
@@ -14,9 +14,15 @@ export default function Skillsets() {
 
   const [isHovering, setIsHovering] = useState(false);
   const [showSave, setshowSave] = useState(true);
+  const [isToolbarVisible, setIsToolbarVisible] = useState(false);
 
   const handleMouseOver = () => {
     setIsHovering(true);
+  };
+
+  const handleIsToolbarVisible = () => {
+    setIsToolbarVisible((val) => !val);
+    console.log(isToolbarVisible);
   };
 
   const handleMouseOut = () => {
@@ -34,13 +40,6 @@ export default function Skillsets() {
 
   const handleSave = () => {
     setshowSave((prev) => !prev);
-    dispatch(isEditable(false));
-    // dispatch(addSkillsetSection({ description: currText }));
-  };
-
-  const handleContent = (content: string) => {
-    // setCurrText(content);
-    console.log();
   };
 
   const handleCancel = () => {
@@ -70,12 +69,13 @@ export default function Skillsets() {
               <SaveChanges
                 handleSave={handleSave}
                 handleCancel={handleCancel}
+                handleIsToolbarVisible={handleIsToolbarVisible}
               />
             ) : null}
             {isHovering && !showSave ? (
               <ShowEditDelete
                 handleSave={handleSave}
-                removeSkillset={removeSkillset}
+                removeSection={removeSkillset}
               />
             ) : null}
             <Grid
@@ -98,17 +98,15 @@ export default function Skillsets() {
                           <LexicalTextarea
                             styles={TitleStyle}
                             placeholder={"Enter title here"}
-                            handleContent={handleContent}
-                            prevContent={set.description}
                             isCompEditable={showSave}
+                            isToolbarVisible={isToolbarVisible}
                           />
-                          <LexicalTextarea
+                          {/* <LexicalTextarea
                             styles={DescriptionStyle}
                             placeholder={"Enter description here"}
-                            handleContent={handleContent}
-                            prevContent={set.description}
                             isCompEditable={showSave}
-                          />
+                            isToolbarVisible={isToolbarVisible}
+                          /> */}
                         </Box>
                       </Box>
                     );

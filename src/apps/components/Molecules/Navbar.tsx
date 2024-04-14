@@ -1,11 +1,11 @@
 import { Flex, Box, Avatar } from "@radix-ui/themes";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addNavBarImage } from "../State/SiteInfoSlice";
+import { addNavBarImage } from "../../State/SiteInfoSlice";
 import ImageUpload from "./Common/ImageUpload";
 import { useState } from "react";
 import { ImageIcon } from "@radix-ui/react-icons";
-import { Navbar } from "../Interface/Section";
+import { Navbar } from "../../Interface/Section";
 addNavBarImage;
 
 export default function Navbar() {
@@ -18,7 +18,7 @@ export default function Navbar() {
   };
 
   return (
-    <Box className="pt-10">
+    <Box className="md:pt-10 max-sm:2">
       <Flex gap="1">
         {SiteInfoSlice.image ? (
           <div className="w-10 h-10 rounded-xl">

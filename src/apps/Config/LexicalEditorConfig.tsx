@@ -5,15 +5,13 @@ import { TableNode, TableCellNode, TableRowNode } from "@lexical/table";
 import { ListNode, ListItemNode } from "@lexical/list";
 import lexicalEditorTheme from "../Theme/LexicalEditorTheme";
 
-function onError(error) {
-  console.error(error);
-}
-
 export const lexicalEditorConfig = {
   namespace: "MyEditor",
   theme: lexicalEditorTheme,
-  editorState: true,
   editable: true,
+  onError(error: Error) {
+    throw error;
+  },
 
   nodes: [
     HeadingNode,

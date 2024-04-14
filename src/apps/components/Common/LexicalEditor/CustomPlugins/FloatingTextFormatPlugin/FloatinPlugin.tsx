@@ -200,13 +200,13 @@ function TextFormatFloatingToolbar({
             <CodeIcon className="h-7 m-0" />
           </button>
 
-          {/* <button
+          <button
             className="rounded cursor-pointer pl-[6px] h-7 w-7 hover:bg-bgGray"
             onClick={insertLink}
             color={isLink ? "secondary" : undefined}
           >
             <Link2Icon className="h-7 m-0" />
-          </button> */}
+          </button>
         </>
       )}
     </Flex>

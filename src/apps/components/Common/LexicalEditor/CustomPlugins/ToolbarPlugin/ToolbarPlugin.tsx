@@ -14,6 +14,7 @@ import {
   FontItalicIcon,
   UnderlineIcon,
 } from "@radix-ui/react-icons";
+import "./styles.css";
 import { OrderedListIcon, UnorderedListIcon } from "./icons/icons";
 interface ToolbarButtonProps {
   onClick: React.MouseEventHandler<HTMLButtonElement> | undefined;

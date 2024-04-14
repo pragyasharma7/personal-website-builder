@@ -11,10 +11,9 @@ const SectionSlice = createSlice({
   reducers: {
     addAboutSection: (state, action) => {
       state.about = action.payload;
-      console.log(state, action)
-      // return {
-      //   ...state, about:action.payload
-      // }
+    },
+    updateProject: (state, action)=>{
+      state.skillset = action.payload;
     },
     addSkillsetSection: (state, action) => {
       state.skillset.push(action.payload);
@@ -31,6 +30,6 @@ const SectionSlice = createSlice({
   },
 });
 
-export const {  addAboutSection, addSkillsetSection, addProjectSection, addExperienceSection, addCTASection } =
+export const {  addAboutSection, addSkillsetSection, addProjectSection, addExperienceSection, addCTASection, updateProject } =
   SectionSlice.actions;
 export default SectionSlice.reducer;

@@ -1,21 +1,18 @@
-import { Avatar, Box, Card, Flex, Heading } from "@radix-ui/themes";
-import { useEffect, useState } from "react";
+import { Box, Flex, Heading } from "@radix-ui/themes";
+import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LexicalTextarea from "./Common/LexicalTextarea";
-import SaveChanges from "./Common/SaveChanges";
-import ShowEditDelete from "./Common/ShowEditDelete";
-import { addAboutSection } from "../State/SectionSlice";
+import LexicalTextarea from "../Common/LexicalEditor/LexicalTextarea";
+import SaveChanges from "../Atoms/SaveChanges";
+import ShowEditDelete from "../Atoms/ShowEditDelete";
+import { addAboutSection } from "../../State/SectionSlice";
 
 export default function AboutUs() {
   const dispatch = useDispatch();
   const aboutSlice = useSelector((store) => store.sections.about);
-  const saveChangesSlice = useSelector((store) => store.saveChanges);
-
-  const [currText, setCurrText] = useState("");
   const [showSave, setshowSave] = useState(true);
+  const [isToolbarVisible, setIsToolbarVisible] = useState(false);
+  const divRef = useRef(null);
 
-  console.log(aboutSlice, saveChangesSlice.save);
-  // const onfig = lexicalEditorConfig;
   const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -24,6 +21,10 @@ export default function AboutUs() {
   const handleMouseOut = () => {
     setIsHovering(false);
   };
+  const handleIsToolbarVisible = () => {
+    setIsToolbarVisible((val) => !val);
+    console.log(isToolbarVisible);
+  };
 
   const style = {
     fontSize: "16px",
@@ -31,19 +32,11 @@ export default function AboutUs() {
 
   const handleSave = () => {
     setshowSave((prev) => !prev);
-    dispatch(addAboutSection({ description: currText }));
-    console.log(aboutSlice);
-  };
-
-  const handleContent = (content: string) => {
-    console.log(content);
-    setCurrText(content);
   };
 
   const handleCancel = () => {
     setshowSave((prev) => !prev);
     dispatch(addAboutSection({ description: aboutSlice.description }));
-    console.log(aboutSlice);
   };
 
   const removeAboutSection = () => {
@@ -53,6 +46,7 @@ export default function AboutUs() {
   {
     return (
       <Box
+        ref={divRef}
         className="w-full"
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
@@ -64,22 +58,18 @@ export default function AboutUs() {
               <SaveChanges
                 handleSave={handleSave}
                 handleCancel={handleCancel}
+                handleIsToolbarVisible={handleIsToolbarVisible}
               />
             ) : null}
 
             {isHovering && !showSave ? (
               <ShowEditDelete
                 handleSave={handleSave}
-                removeAboutSection={removeAboutSection}
+                removeSection={removeAboutSection}
               />
             ) : (
               <Box className="mb-4 mr-4 h-[32px]"></Box>
             )}
-
-            {/* <Box className="border rounded-3xl shadow p-8">
-              <Heading className="text-left mb-8">About Me</Heading>
-              <pre>{aboutSlice.description}</pre>
-            </Box> */}
             <Box
               className={` p-8 ${
                 showSave
@@ -91,9 +81,8 @@ export default function AboutUs() {
               <LexicalTextarea
                 styles={style}
                 placeholder={"Start writing..."}
-                handleContent={handleContent}
-                prevContent={aboutSlice.description}
                 isCompEditable={showSave}
+                isToolbarVisible={isToolbarVisible}
               />
             </Box>
           </Box>
