@@ -14,7 +14,6 @@ const IntoductionSlice = createSlice({
   reducers: {
     addImage: (state, action) => {
       state.image = action.payload;
-      console.log(state, action)
     },
     addName: (state, action) => {
       state.name = action.payload;

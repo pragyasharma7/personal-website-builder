@@ -27,7 +27,6 @@ const SectionSlice = createSlice({
     },
     addSkillsetSection: (state, action) => {
       state.skillset.data.push(action.payload);
-      console.log(state.skillset)
     },
     deleteSkillSetSection:(state, action) => {
       state.skillset.data = [];
@@ -44,7 +43,6 @@ const SectionSlice = createSlice({
     },
     addProjectSection: (state, action) => {
       state.project.data.push(action.payload);
-      console.log(state.project)
     },
     deleteProjectSection:(state, action) => {
       state.project.data = [];

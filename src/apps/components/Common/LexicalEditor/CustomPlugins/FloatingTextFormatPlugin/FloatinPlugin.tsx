@@ -152,7 +152,6 @@ function TextFormatFloatingToolbar({
           <button
             className="rounded pl-[6px] cursor-pointer h-7 w-7 hover:bg-bgGray font-semibold"
             onClick={() => {
-              console.log("dispatc", isBold);
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, "bold");
             }}
           >

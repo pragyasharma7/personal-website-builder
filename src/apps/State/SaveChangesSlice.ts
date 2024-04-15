@@ -8,7 +8,6 @@ const SaveChangesSlice = createSlice({
   reducers: {
     changesSaved: (state, action) => {
       state.save = action.payload;
-      console.log(state, action)
     }
   },
 });

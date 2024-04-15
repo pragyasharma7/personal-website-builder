@@ -6,10 +6,16 @@ import LexicalTextWrapper from "../Atoms/LexicalTextWrapper";
 
 export default function Introduction() {
   const introductionSlice = useSelector((store) => store.introduction);
+  const lexicalEditableSlice = useSelector((store) => store.lexicalEditor);
+
   const dispatch = useDispatch();
 
   const headingOneStyle = {
     fontSize: "76px",
+  };
+
+  const headingOneSmStyle = {
+    fontSize: "36px",
   };
   const subheadingStyle = {
     fontSize: "18px",
@@ -47,6 +53,7 @@ export default function Introduction() {
             <input
               id="file"
               type="file"
+              disabled={!lexicalEditableSlice.isEditable}
               className="invisible"
               onChange={handleFileUpload}
             />
@@ -62,6 +69,7 @@ export default function Introduction() {
             <input
               id="file"
               type="file"
+              disabled={!lexicalEditableSlice.isEditable}
               className="invisible"
               onChange={handleFileUpload}
             />
@@ -69,25 +77,32 @@ export default function Introduction() {
         )}
         <Heading
           as="h6"
-          className="text-base text-left font-bold max-w-[295px] h-fit"
+          className="text-base text-left font-bold max-w-[295px] h-fit max-md:max-w-full"
         >
           <LexicalTextWrapper
             styles={nameStyle}
             placeholder={"Your name here"}
           />
         </Heading>
-        <Heading as="h6" className="text-sm text-left max-w-[295px] h-fit">
+        <Heading
+          as="h6"
+          className="text-sm text-left max-w-[295px] h-fit max-md:max-w-full"
+        >
           <LexicalTextWrapper styles={emailStyle} placeholder={"Enter email"} />
         </Heading>
       </Box>
-      <Box className="mt-7 w-full">
-        <h1 className="text-7xl text-left ">
+      <Box className="mt-7 w-full max-md:max-w-full">
+        <h1 className="text-left">
           <LexicalTextWrapper
-            styles={headingOneStyle}
+            styles={
+              window.matchMedia("(min-width: 768px)").matches
+                ? headingOneStyle
+                : headingOneSmStyle
+            }
             placeholder={"Click to add title"}
           />
         </h1>
-        <h6 className="text-lg text-left max-w-[341px] mt-5">
+        <h6 className="text-lg text-left max-w-[341px] mt-5  max-md:max-w-full">
           <LexicalTextWrapper
             styles={subheadingStyle}
             placeholder={"Click to add subtitle"}

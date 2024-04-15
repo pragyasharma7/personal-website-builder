@@ -1,15 +1,13 @@
-import { Flex, Box, Avatar } from "@radix-ui/themes";
+import { Flex, Box } from "@radix-ui/themes";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addNavBarImage } from "../../State/SiteInfoSlice";
-import ImageUpload from "./Common/ImageUpload";
-import { useState } from "react";
 import { ImageIcon } from "@radix-ui/react-icons";
 import { Navbar } from "../../Interface/Section";
-addNavBarImage;
 
 export default function Navbar() {
   const SiteInfoSlice: Navbar = useSelector((store) => store.siteInfo);
+  const lexicalEditableSlice = useSelector((store) => store.lexicalEditor);
 
   const dispatch = useDispatch();
 
@@ -37,6 +35,7 @@ export default function Navbar() {
             <input
               id="file-nav"
               type="file"
+              disabled={!lexicalEditableSlice.isEditable}
               className="invisible"
               onChange={handleFileUpload}
             />
@@ -51,6 +50,7 @@ export default function Navbar() {
               type="file"
               className="invisible"
               onChange={handleFileUpload}
+              disabled={!lexicalEditableSlice.isEditable}
             />
           </div>
         )}

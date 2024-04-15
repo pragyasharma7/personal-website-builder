@@ -25,7 +25,6 @@ export default function AboutUs() {
   };
   const handleIsToolbarVisible = () => {
     setIsToolbarVisible((val) => !val);
-    console.log(isToolbarVisible);
   };
 
   const style = {
@@ -54,7 +53,7 @@ export default function AboutUs() {
         onMouseOut={handleMouseOut}
       >
         <Flex gap="5">
-          <Box className="w-5/12"></Box>
+          <div className="w-5/12 max-md:hidden"></div>
           <Box className="w-full h-fit">
             <div className="h-[32px] max-h-[32px] mb-2">
               {showSave && lexicalEditableSlice.isEditable ? (

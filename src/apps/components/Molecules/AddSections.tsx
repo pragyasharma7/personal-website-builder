@@ -18,14 +18,12 @@ import { sectionsLists } from "../../utils/Constants";
 import { useRef } from "react";
 
 export default function AddSections() {
-  console.log(sectionsLists);
   const sectionsList: SectionsDropdown[] = sectionsLists;
   const divRef = useRef(null);
 
   const sectionSlice = useSelector((store) => store.sections);
   const dispatch = useDispatch();
 
-  console.log(sectionSlice);
   function AddSection(section) {
     if (section.section === "about") {
       const about: About = {
@@ -72,13 +70,16 @@ export default function AddSections() {
       <Popover.Trigger>
         <div
           ref={divRef}
-          className="bg-bgGray border-dashed cursor-pointer text-black w-full rounded-2xl border-black pt-7 border h-20 py-2.5
-        "
+          className="bg-bgGray border-dashed cursor-pointer text-black w-full rounded-2xl border-black pt-7 border h-20 py-2.5"
         >
           <div className="text-sm font-semibold">+ Click to Add sections</div>
         </div>
       </Popover.Trigger>
-      <Popover.Content width="369px" minWidth="369px" className="left-[148%]">
+      <Popover.Content
+        width="369px"
+        minWidth="369px"
+        className="left-[148%] max-md:left-[0px]"
+      >
         <div className="p-4">
           {sectionsList
             .filter((item) => !item.disabled)

@@ -72,7 +72,7 @@ export default function Project() {
   return (
     <Box className="w-full">
       <Flex gap="5" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-        <Box className="w-5/12"></Box>
+        <div className="w-5/12 max-md:hidden"></div>
         <>
           <Box className="w-full h-fit">
             <div className="h-[32px] max-h-[32px] mb-2">
@@ -92,7 +92,7 @@ export default function Project() {
               ) : null}
             </div>
             <Box
-              className={`p-[50px] ml-3 mb-7 ${
+              className={`p-[50px] max-md:p-4 ml-3 mb-7 ${
                 showSave && lexicalEditableSlice.isEditable
                   ? "border-[#828282] border shadow rounded-3xl h-fit"
                   : "border-none h-fit"
@@ -107,13 +107,21 @@ export default function Project() {
                 isCompEditable={showSave}
                 isToolbarVisible={isToolbarVisible}
               />
-              <Grid as="div" justify={"between"} columns="2" gapY="5" gapX="2">
+              <Grid
+                as="div"
+                justify={"between"}
+                columns={
+                  window.matchMedia("(min-width: 768px)").matches ? "2" : "1"
+                }
+                gapY="5"
+                gapX="2"
+              >
                 {projectSlice.data.length > 0
                   ? projectSlice.data.map((project: Project) => {
                       return (
                         <Box
                           key={project.id}
-                          className={`border rounded-3xl shadow  bg-white mr-5 p-8 ${
+                          className={`border rounded-3xl shadow  bg-white mr-5 p-8 max-md:p-2 max-md:pt-5 max-md:mr-0 ${
                             lexicalEditableSlice.isEditable
                               ? "hover: shadow-lg"
                               : null
@@ -137,6 +145,7 @@ export default function Project() {
                                 id={`project${project.id}`}
                                 type="file"
                                 className="invisible"
+                                disabled={!lexicalEditableSlice.isEditable}
                                 onChange={() => {
                                   handleAddImage(project, event);
                                 }}
@@ -154,6 +163,7 @@ export default function Project() {
                                 id={`project${project.id}`}
                                 type="file"
                                 className="invisible"
+                                disabled={!lexicalEditableSlice.isEditable}
                                 onChange={() => {
                                   handleAddImage(project, event);
                                 }}

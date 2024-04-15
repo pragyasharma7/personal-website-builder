@@ -25,7 +25,6 @@ export default function LexicalTextWrapper({ styles, placeholder }) {
 
   const handleSave = () => {
     setshowSave((prev) => !prev);
-    console.log(showSave);
   };
 
   const handleCancel = () => {

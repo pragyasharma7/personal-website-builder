@@ -29,11 +29,12 @@ export default function LexicalTextarea({
     const { onChange } = props;
 
     useEffect(() => {
-      if (!lexicalEditableSlice.isEditable)
-        editor.setEditable(lexicalEditableSlice.isEditable);
+      if (lexicalEditableSlice.isEditable && !isCompEditable)
+        editor.setEditable(isCompEditable);
       else if (lexicalEditableSlice.isEditable)
         editor.setEditable(lexicalEditableSlice.isEditable);
-      else editor.setEditable(lexicalEditableSlice.isEditable);
+      else if (!lexicalEditableSlice.isEditable)
+        editor.setEditable(lexicalEditableSlice.isEditable);
 
       return editor.registerUpdateListener(({ editorState }) => {
         onChange(editorState);

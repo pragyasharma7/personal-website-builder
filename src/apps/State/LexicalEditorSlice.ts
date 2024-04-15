@@ -8,7 +8,6 @@ const LexicalEditorSlice = createSlice({
   reducers: {
     isEditable: (state, action) => {
       state.isEditable = action.payload;
-      console.log(state, action)
     }
   },
 });

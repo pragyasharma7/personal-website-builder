@@ -26,7 +26,6 @@ export default function Skillsets() {
 
   const handleIsToolbarVisible = () => {
     setIsToolbarVisible((val) => !val);
-    console.log(isToolbarVisible);
   };
 
   const handleMouseOut = () => {
@@ -62,7 +61,7 @@ export default function Skillsets() {
   return (
     <Box className="w-full" ref={divRef}>
       <Flex gap="5" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-        <Box className="w-5/12"></Box>
+        <div className="w-5/12 max-md:hidden"></div>
         <>
           <Box className="w-full h-full">
             <div className="h-[32px] max-h-[32px] mb-2">
@@ -84,10 +83,12 @@ export default function Skillsets() {
             <Grid
               as="div"
               justify={"between"}
-              columns="2"
+              columns={
+                window.matchMedia("(min-width: 768px)").matches ? "2" : "1"
+              }
               gapY="5"
               gapX="2"
-              className={`p-[50px] ${
+              className={`p-[50px] max-md:p-4 ${
                 showSave && lexicalEditableSlice.isEditable
                   ? "border-[#828282] border shadow rounded-3xl "
                   : "border-none"
@@ -98,7 +99,7 @@ export default function Skillsets() {
                     return (
                       <Box key={set.id}>
                         <Box
-                          className={`border rounded-3xl shadow-lg  bg-white mr-5 p-8 ${
+                          className={`border rounded-3xl shadow-lg bg-white mr-5 p-8 max-md:p-2 max-md:mr-0 max-md:h-[300px] ${
                             showSave ? "h-[535px]" : "h-fit"
                           }`}
                         >
@@ -115,7 +116,7 @@ export default function Skillsets() {
                 : null}
               {showSave && lexicalEditableSlice.isEditable ? (
                 <Box
-                  className="border bg-addCardBkg rounded-3xl shadow  min-h-[535px] pt-[225px] m-0 cursor-pointer hover:shadow-lg"
+                  className="border bg-addCardBkg rounded-3xl shadow  min-h-[535px] pt-[225px] m-0 cursor-pointer hover:shadow-lg max-md:p-2 max-md:mr-0 max-md:min-h-[300px] max-md:pt-[115px]"
                   onClick={addNewSet}
                 >
                   <p>+</p>

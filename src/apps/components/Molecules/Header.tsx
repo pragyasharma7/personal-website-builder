@@ -3,7 +3,6 @@ import { TextAlignJustifyIcon, TriangleDownIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import * as Menubar from "@radix-ui/react-menubar";
 import { headerSectionsList, sectionsLists } from "../../utils/Constants";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
 import * as Accordion from "@radix-ui/react-accordion";
 import { AccordionContent, AccordionTrigger } from "@radix-ui/react-accordion";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,6 +22,7 @@ export default function Header({ scrollToRef }) {
   };
   const handlePublish = () => {
     dispatch(isEditable(!lexicalEditableSlice.isEditable));
+    window.matchMedia("(min-width: 768px)").matches ? null : toggleMenu();
   };
   const pingAddNewSection = () => {
     scrollToRef.current.scrollIntoView({ behavior: "smooth", scale: 110 });
@@ -186,19 +186,36 @@ export default function Header({ scrollToRef }) {
             </Accordion.Item>
             <Accordion.Item className="AccordionItem mt-5" value="item-1">
               <AccordionTrigger className="flex w-full justify-center font-semibold">
-                Preferences <ChevronDownIcon className="pt-1 w-5 h-5" />
+                Preferences <TriangleDownIcon className="pt-1 w-5 h-5" />
               </AccordionTrigger>
               <AccordionContent className="mt-5">
                 No content available
               </AccordionContent>
             </Accordion.Item>
             <div className="flex flex-auto justify-end max-sm:block mt-8">
-              <p className="text-sm text-white p-2.5 font-bold h-10 cursor-pointer">
-                Preview
-              </p>
-              <button className="mt-[6px] bg-bgBtn rounded-3xl px-4 h-7 font-semibold text-sm cursor-pointer">
-                Publish
-              </button>
+              {lexicalEditableSlice?.isEditable ? (
+                <>
+                  <p
+                    onClick={handlePublish}
+                    className="text-sm text-white p-2.5 font-bold h-10 cursor-pointer"
+                  >
+                    Preview
+                  </p>
+                  <button
+                    onClick={handlePublish}
+                    className="mt-[6px] bg-bgBtn rounded-3xl px-4 h-7 font-semibold text-sm cursor-pointer"
+                  >
+                    Publish
+                  </button>
+                </>
+              ) : (
+                <button
+                  className="mt-[10px] bg-bgBtn rounded-3xl px-4 h-7 font-semibold text-sm cursor-pointer"
+                  onClick={handlePublish}
+                >
+                  Unpublish
+                </button>
+              )}
             </div>
           </Accordion.Root>
         </div>
