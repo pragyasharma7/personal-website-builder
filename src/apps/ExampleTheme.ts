@@ -29,6 +29,7 @@
   placeholder: 'editor-placeholder',
   quote: 'editor-quote',
   rtl: 'rtl',
+    hashtag: "editor-text-hashtag",
   text: {
     bold: 'editor-text-bold',
     code: 'editor-text-code',

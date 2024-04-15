@@ -1,4 +1,4 @@
-import { Box, Flex, Heading } from "@radix-ui/themes";
+import { Box } from "@radix-ui/themes";
 import SaveChanges from "./SaveChanges";
 import ShowEditDelete from "./ShowEditDelete";
 import LexicalTextarea from "../Common/LexicalEditor/LexicalTextarea";

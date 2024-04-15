@@ -4,6 +4,7 @@ import { CodeHighlightNode, CodeNode } from "@lexical/code";
 import { TableNode, TableCellNode, TableRowNode } from "@lexical/table";
 import { ListNode, ListItemNode } from "@lexical/list";
 import lexicalEditorTheme from "../Theme/LexicalEditorTheme";
+import { HashtagNode } from "@lexical/hashtag";
 
 export const lexicalEditorConfig = {
   namespace: "MyEditor",
@@ -25,5 +26,6 @@ export const lexicalEditorConfig = {
     TableRowNode,
     AutoLinkNode,
     LinkNode,
+    HashtagNode,
   ],
 };

@@ -13,6 +13,8 @@ import { useSelector } from "react-redux";
 import { EditorState } from "lexical";
 import { ToolbarPlugin } from "./CustomPlugins/ToolbarPlugin/ToolbarPlugin";
 import { lexicalEditorConfig } from "../../../Config/LexicalEditorConfig";
+import { HashtagPlugin } from "@lexical/react/LexicalHashtagPlugin";
+import TreeViewPlugin from "./CustomPlugins/TreeViewPlugin/TreeViewPlugin";
 
 export default function LexicalTextarea({
   styles,
@@ -72,15 +74,17 @@ export default function LexicalTextarea({
           />
           <MyOnChangePlugin
             onChange={(editorState) => {
-              console.log(editorState);
+              // console.log(editorState);
             }}
           />
           <ListPlugin />
           <LinkPlugin />
+          <HashtagPlugin />
           {isCompEditable && lexicalEditableSlice.isEditable ? (
             <FloatingTextFormatToolbarPlugin />
           ) : null}
           <AutoFocusPlugin />
+          {/* <TreeViewPlugin /> */}
         </div>
       </div>
     </LexicalComposer>

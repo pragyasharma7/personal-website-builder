@@ -10,13 +10,7 @@ import { store } from "./apps/State/Store";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Theme
-      accentColor="gray"
-      appearance="light"
-      grayColor="sand"
-      radius="large"
-      scaling="100%"
-    >
+    <Theme appearance="light" radius="large" scaling="100%">
       <Provider store={store}>
         <App />
       </Provider>
