@@ -37,34 +37,36 @@ export default function LexicalTextWrapper({ styles, placeholder }) {
 
   return (
     <Box
-      className="w-full mb-4"
+      className="w-full mb-2"
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
       <Box className="w-full h-fit">
-        <div
-          className={`h-[32px] max-h-[32px]  ${!showSave ? "mb-4" : "mb-10"}`}
-        >
-          {showSave && lexicalEditableSlice.isEditable ? (
-            <SaveChanges
-              handleSave={handleSave}
-              handleCancel={handleCancel}
-              handleIsToolbarVisible={handleIsToolbarVisible}
-            />
-          ) : null}
+        {lexicalEditableSlice.isEditable ? (
+          <div className="h-[32px] max-h-[32px] mb-2">
+            {showSave && lexicalEditableSlice.isEditable ? (
+              <SaveChanges
+                handleSave={handleSave}
+                handleCancel={handleCancel}
+                handleIsToolbarVisible={handleIsToolbarVisible}
+              />
+            ) : null}
 
-          {isHovering && !showSave && lexicalEditableSlice.isEditable ? (
-            <ShowEditDelete
-              handleSave={handleSave}
-              removeSection={removeSection}
-            />
-          ) : null}
-        </div>
+            {isHovering && !showSave && lexicalEditableSlice.isEditable ? (
+              <ShowEditDelete
+                handleSave={handleSave}
+                removeSection={removeSection}
+                showDelete={false}
+              />
+            ) : null}
+          </div>
+        ) : null}
+
         <Box
           className={` p-1 ${
             showSave && lexicalEditableSlice.isEditable
-              ? "border-[#828282] border shadow rounded-xl mt-[-30px]"
-              : "border-none h-[40px]"
+              ? "border-[#828282] border shadow rounded-xl"
+              : "border-none"
           }`}
         >
           <LexicalTextarea

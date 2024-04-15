@@ -9,6 +9,8 @@ import { addAboutSection } from "../../State/SectionSlice";
 export default function AboutUs() {
   const dispatch = useDispatch();
   const aboutSlice = useSelector((store) => store.sections.about);
+  const lexicalEditableSlice = useSelector((store) => store.lexicalEditor);
+
   const [showSave, setshowSave] = useState(true);
   const [isToolbarVisible, setIsToolbarVisible] = useState(false);
   const divRef = useRef(null);
@@ -54,25 +56,28 @@ export default function AboutUs() {
         <Flex gap="5">
           <Box className="w-5/12"></Box>
           <Box className="w-full h-fit">
-            {showSave ? (
-              <SaveChanges
-                handleSave={handleSave}
-                handleCancel={handleCancel}
-                handleIsToolbarVisible={handleIsToolbarVisible}
-              />
-            ) : null}
+            <div className="h-[32px] max-h-[32px] mb-2">
+              {showSave && lexicalEditableSlice.isEditable ? (
+                <SaveChanges
+                  handleSave={handleSave}
+                  handleCancel={handleCancel}
+                  handleIsToolbarVisible={handleIsToolbarVisible}
+                />
+              ) : null}
 
-            {isHovering && !showSave ? (
-              <ShowEditDelete
-                handleSave={handleSave}
-                removeSection={removeAboutSection}
-              />
-            ) : (
-              <Box className="mb-4 mr-4 h-[32px]"></Box>
-            )}
+              {isHovering && !showSave && lexicalEditableSlice.isEditable ? (
+                <ShowEditDelete
+                  handleSave={handleSave}
+                  removeSection={removeAboutSection}
+                  showDelete={true}
+                />
+              ) : (
+                <Box className="mb-4 mr-4 h-[32px]"></Box>
+              )}
+            </div>
             <Box
               className={` p-8 ${
-                showSave
+                showSave && lexicalEditableSlice.isEditable
                   ? "border-[#828282] border shadow rounded-3xl "
                   : "border-none"
               }`}

@@ -12,20 +12,16 @@ export default function Introduction() {
     fontSize: "76px",
   };
   const subheadingStyle = {
-    fontSize: "16px",
+    fontSize: "18px",
   };
   const nameStyle = {
-    fontSize: "14px",
+    fontSize: "16px",
     fontWeight: 600,
     minHeight: "40px",
-    maxHeight: "40px",
-    overflow: "scroll",
   };
   const emailStyle = {
     fontSize: "14px",
     minHeight: "40px",
-    maxHeight: "40px",
-    overflow: "scroll",
   };
   const handleFileUpload = (event) => {
     dispatch(addImage(event.target.files[0]));
@@ -35,7 +31,7 @@ export default function Introduction() {
     <div className="md:flex sm:block md:pt-14 max-md:pt-8">
       <Box className="md:mr-48 max-sm:mr-0">
         {introductionSlice.image ? (
-          <div className="w-[295px] h-[295px] rounded-3xl">
+          <div className="w-[295px] h-[295px] rounded-3xl mb-2">
             <label
               htmlFor="file"
               className="cursor-pointer justify-center w-[100px]"
@@ -56,7 +52,7 @@ export default function Introduction() {
             />
           </div>
         ) : (
-          <div className="border bg-bgGray border-dashed border-[#AEAEAE] w-[295px] h-[295px] rounded-3xl">
+          <div className="border bg-bgGray border-dashed border-[#AEAEAE] w-[295px] h-[295px] rounded-3xl mb-2">
             <label
               htmlFor="file"
               className="cursor-pointer justify-center mt-[115px]"
@@ -73,14 +69,14 @@ export default function Introduction() {
         )}
         <Heading
           as="h6"
-          className="text-base text-left font-bold mt-2 max-w-[300px] h-fit"
+          className="text-base text-left font-bold max-w-[295px] h-fit"
         >
           <LexicalTextWrapper
             styles={nameStyle}
             placeholder={"Your name here"}
           />
         </Heading>
-        <Heading as="h6" className="text-sm text-left max-w-[300px] h-fit">
+        <Heading as="h6" className="text-sm text-left max-w-[295px] h-fit">
           <LexicalTextWrapper styles={emailStyle} placeholder={"Enter email"} />
         </Heading>
       </Box>

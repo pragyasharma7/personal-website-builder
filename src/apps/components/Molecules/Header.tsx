@@ -2,7 +2,7 @@ import { Flex, Avatar } from "@radix-ui/themes";
 import { TextAlignJustifyIcon, TriangleDownIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import * as Menubar from "@radix-ui/react-menubar";
-import { sectionsLists } from "../../utils/Constants";
+import { headerSectionsList, sectionsLists } from "../../utils/Constants";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import * as Accordion from "@radix-ui/react-accordion";
 import { AccordionContent, AccordionTrigger } from "@radix-ui/react-accordion";
@@ -12,19 +12,32 @@ import { isEditable } from "../../State/LexicalEditorSlice";
 export default function Header({ scrollToRef }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const lexicalEditableSlice = useSelector((store) => store.lexicalEditor);
+  const sectionsSlice = useSelector((store) => store.sections);
 
   const dispatch = useDispatch();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const handleClick = () => {
-    // Scroll to the div
     scrollToRef.current.scrollIntoView({ behavior: "smooth" });
   };
   const handlePublish = () => {
     dispatch(isEditable(!lexicalEditableSlice.isEditable));
   };
-
+  const pingAddNewSection = () => {
+    scrollToRef.current.scrollIntoView({ behavior: "smooth", scale: 110 });
+  };
+  const checkIfSectionsExist = () => {
+    if (
+      sectionsSlice.about.description ||
+      sectionsSlice.experience.length > 0 ||
+      sectionsSlice.project.length > 0 ||
+      sectionsSlice.skillset.length > 0
+    ) {
+      return true;
+    }
+    return false;
+  };
   return (
     <>
       <div className="w-full pl-9 bg-bgNavBar navbar shadow text-white py-3 drop-shadow-lg pr-9 flex mb-0 max-sm:px-3">
@@ -40,7 +53,10 @@ export default function Header({ scrollToRef }) {
 
           <Menubar.Root className="ml-8 max-sm:hidden mt-[5px]">
             <Menubar.Menu>
-              <Menubar.Trigger className="MenubarTrigger">
+              <Menubar.Trigger
+                className="MenubarTrigger"
+                onClick={checkIfSectionsExist}
+              >
                 <p className="flex text-sm text-white p-2.5 font-bold h-10">
                   Sections <TriangleDownIcon className="w-5 h-5" />
                 </p>
@@ -52,17 +68,40 @@ export default function Header({ scrollToRef }) {
                   sideOffset={5}
                   alignOffset={-3}
                 >
-                  {sectionsLists.map((section) => {
-                    return (
-                      <Menubar.Item
-                        key={section.section}
-                        onClick={handleClick}
-                        className="h-12 w-52 hover:bg-bgGray p-3 text-sm rounded-xl pl-6 cursor-pointer outline-none"
-                      >
-                        {section.displayName}
-                      </Menubar.Item>
-                    );
-                  })}
+                  {checkIfSectionsExist() ? (
+                    headerSectionsList.map((section) => {
+                      return (
+                        <Menubar.Item
+                          key={section.section}
+                          onClick={handleClick}
+                          className="h-12 w-52 hover:bg-bgGray p-3 text-sm rounded-xl pl-6 cursor-pointer outline-none"
+                        >
+                          {section.displayName}
+                        </Menubar.Item>
+                      );
+                    })
+                  ) : (
+                    <Menubar.Item
+                      key={1}
+                      className="h-fit w-52 p-1 text-sm rounded-xl outline-none"
+                    >
+                      <div className="">
+                        <p className="h-9 w-9 m-auto text-center text-4xl text-[#D2D2D2] mb-6">
+                          !
+                        </p>
+                        <p className="text-xs font-semibold mb-3 text-center">
+                          You have not added any sections,
+                          <br /> click to add new section
+                        </p>
+                        <button
+                          onClick={pingAddNewSection}
+                          className="ml-[37px] w-24 rounded-2xl border border-solid text-xs cursor-pointer py-2 px-3"
+                        >
+                          Add new section
+                        </button>
+                      </div>
+                    </Menubar.Item>
+                  )}
                 </Menubar.Content>
               </Menubar.Portal>
             </Menubar.Menu>
@@ -75,7 +114,7 @@ export default function Header({ scrollToRef }) {
               </Menubar.Trigger>
               <Menubar.Portal>
                 <Menubar.Content
-                  className="MenubarContent"
+                  className="MenubarContent bg-white rounded-3xl p-7 outline-none"
                   align="start"
                   sideOffset={5}
                   alignOffset={-3}
@@ -92,7 +131,10 @@ export default function Header({ scrollToRef }) {
           </div>
           {lexicalEditableSlice?.isEditable ? (
             <div className="flex flex-auto justify-end max-sm:hidden">
-              <button className="text-sm text-white p-2.5 font-bold h-7 mr-5 cursor-pointer">
+              <button
+                className="text-sm text-white p-2.5 font-bold h-7 mr-5 cursor-pointer"
+                onClick={handlePublish}
+              >
                 Preview
               </button>
               <button

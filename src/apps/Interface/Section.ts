@@ -13,22 +13,18 @@ export interface Sections {
 
 export interface About {
   description: string;
-  disabled: boolean
 }
 
 export interface SkillSet {
   id: Number;
   title: string;
   description: string;
-    disabled: boolean
 }
 
 export interface Project {
   id: Number;
   image: string;
   title: string;
-    disabled: boolean
-
 }
 
 export interface Experience {
@@ -39,8 +35,6 @@ export interface Experience {
   timeline: string;
   designation: string;
   description: string;
-    disabled: boolean
-
 }
 
 export interface Navbar {
@@ -58,6 +52,7 @@ export interface LexicalEditorProps {
 export interface ShowEditDeleteProps {
   handleSave: Function;
   removeSection: Function;
+  showDelete: boolean
 }
 
 export interface SaveChangesProps {

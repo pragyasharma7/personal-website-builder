@@ -15,10 +15,12 @@ import {
   SkillSet,
 } from "../../Interface/Section";
 import { sectionsLists } from "../../utils/Constants";
+import { useRef } from "react";
 
 export default function AddSections() {
   console.log(sectionsLists);
   const sectionsList: SectionsDropdown[] = sectionsLists;
+  const divRef = useRef(null);
 
   const sectionSlice = useSelector((store) => store.sections);
   const dispatch = useDispatch();
@@ -28,27 +30,21 @@ export default function AddSections() {
     if (section.section === "about") {
       const about: About = {
         description: "",
-        disabled: true,
       };
-      section.disabled = true;
       dispatch(addAboutSection(about));
     } else if (section.section === "skillset") {
       const skillset: SkillSet = {
-        id: 0,
+        id: 1,
         title: "",
         description: "",
-        disabled: true,
       };
-      section.disabled = true;
       dispatch(addSkillsetSection(skillset));
     } else if (section.section === "project") {
       const project: Project = {
-        id: 0,
+        id: 1,
         image: "",
         title: "",
-        disabled: true,
       };
-      section.disabled = true;
       dispatch(addProjectSection(project));
     } else if (section.section === "experience") {
       const experience: Experience = {
@@ -59,9 +55,7 @@ export default function AddSections() {
         timeline: "",
         designation: "",
         description: "",
-        disabled: true,
       };
-      section.disabled = true;
       dispatch(addExperienceSection(experience));
     }
     // else if (section.section === "cta") {
@@ -72,13 +66,15 @@ export default function AddSections() {
     //  dispatch(addCTASection([]));
     // }
     else return;
-
-    return;
   }
   return (
     <Popover.Root>
       <Popover.Trigger>
-        <div className="bg-bgGray border-dashed cursor-pointer text-black w-full rounded-2xl border-black pt-7 border h-20 py-2.5">
+        <div
+          ref={divRef}
+          className="bg-bgGray border-dashed cursor-pointer text-black w-full rounded-2xl border-black pt-7 border h-20 py-2.5
+        "
+        >
           <div className="text-sm font-semibold">+ Click to Add sections</div>
         </div>
       </Popover.Trigger>
@@ -96,7 +92,7 @@ export default function AddSections() {
                     onClick={() => AddSection(section)}
                   >
                     <div className="w-[21px] h-[21px] bg-bgGray rounded-3xl flex hover:bg-white">
-                      <PlusIcon className="size-6 m-auto" />
+                      <PlusIcon className="size-4 m-auto" />
                     </div>
                     &nbsp; &nbsp;&nbsp;{section.displayName}
                   </div>

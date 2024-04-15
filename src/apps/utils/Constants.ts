@@ -27,3 +27,32 @@ export const sectionsLists: SectionsDropdown[] = [
     disabled: false,
   },
 ];
+
+
+export const headerSectionsList: SectionsDropdown[] = [
+  {
+    section: "about",
+    displayName: "📌 About you",
+    disabled: false,
+  },
+  {
+    section: "skillset",
+    displayName: "💡 Skillsets",
+    disabled: false,
+  },
+  {
+    section: "project",
+    displayName: "🛠️ Projects",
+    disabled: false,
+  },
+  {
+    section: "experience",
+    displayName: "🌐 Experience",
+    disabled: false,
+  },
+  {
+    section: "cta",
+    displayName: "🔗 CTA",
+    disabled: false,
+  },
+];

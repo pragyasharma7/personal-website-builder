@@ -20,30 +20,30 @@ export default function Homepage() {
   return (
     <>
       <Header scrollToRef={divRef} />
-      <Box className="md:px-32 max-sm:p-5 bg-bgHomepage h-full">
+      <Box className="md:px-32 max-sm:p-5 bg-bgHomepage h-max min-h-screen">
         <Navbar />
 
         <Introduction />
 
-        {sectionSlice?.about.description?.length >= 0 ? (
+        {sectionSlice?.about.data?.description?.length >= 0 ? (
           <Section ref={divRef}>
             <AboutUs />
           </Section>
         ) : null}
 
-        {sectionSlice?.skillset?.length > 0 ? (
+        {sectionSlice?.skillset?.data?.length > 0 ? (
           <Section ref={divRef}>
             <Skillsets />
           </Section>
         ) : null}
 
-        {sectionSlice?.project?.length > 0 ? (
+        {sectionSlice?.project?.data?.length > 0 ? (
           <Section ref={divRef}>
             <Project />
           </Section>
         ) : null}
 
-        {sectionSlice?.experience?.length > 0 ? (
+        {sectionSlice?.experience?.data?.length > 0 ? (
           <Section ref={divRef}>
             <Experience />
           </Section>

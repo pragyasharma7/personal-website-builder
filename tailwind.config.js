@@ -16,7 +16,7 @@ export default {
         bgBtn: '#0085FF',
         placeholderText: '#C6C6C6',
         bgIconHover: '#E4E4E4' ,
-        addCardBkg: '#DADADA'
+        addCardBkg: '#EEEEEE'
       }
     },
   },

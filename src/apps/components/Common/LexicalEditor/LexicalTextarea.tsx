@@ -50,7 +50,11 @@ export default function LexicalTextarea({
     <LexicalComposer initialConfig={lexicalEditorConfig}>
       {isToolbarVisible && isCompEditable ? <ToolbarPlugin /> : null}
       <div className="editor-container m-0 max-w-none">
-        <div className="editor-inner bg-bgHomepage leading-none">
+        <div
+          className={`editor-inner bg-bgHomepage leading-none ${
+            !lexicalEditableSlice.isEditable ? "h-min" : null
+          }`}
+        >
           <RichTextPlugin
             contentEditable={
               <ContentEditable className="editor-input m-0" style={styles} />
