@@ -96,6 +96,7 @@ export default function Header({ scrollToRef }) {
                         <button
                           onClick={pingAddNewSection}
                           className="ml-[37px] w-24 rounded-2xl border border-solid text-xs cursor-pointer py-2 px-3"
+                          aria-labelledby="add new section"
                         >
                           Add new section
                         </button>
@@ -133,12 +134,14 @@ export default function Header({ scrollToRef }) {
             <div className="flex flex-auto justify-end max-sm:hidden">
               <button
                 className="text-sm text-white p-2.5 font-bold h-7 mr-5 cursor-pointer"
+                aria-labelledby="preview"
                 onClick={handlePublish}
               >
                 Preview
               </button>
               <button
                 className="mt-[10px] bg-bgBtn rounded-3xl px-4 h-7 font-semibold text-sm cursor-pointer"
+                aria-labelledby="publish"
                 onClick={handlePublish}
               >
                 Publish
@@ -148,6 +151,7 @@ export default function Header({ scrollToRef }) {
             <div className="flex flex-auto justify-end max-sm:hidden">
               <button
                 className="mt-[10px] bg-bgBtn rounded-3xl px-4 h-7 font-semibold text-sm cursor-pointer"
+                aria-labelledby="unpublish"
                 onClick={handlePublish}
               >
                 Unpublish
@@ -204,6 +208,7 @@ export default function Header({ scrollToRef }) {
                   <button
                     onClick={handlePublish}
                     className="mt-[6px] bg-bgBtn rounded-3xl px-4 h-7 font-semibold text-sm cursor-pointer"
+                    aria-labelledby="publish"
                   >
                     Publish
                   </button>
@@ -211,6 +216,7 @@ export default function Header({ scrollToRef }) {
               ) : (
                 <button
                   className="mt-[10px] bg-bgBtn rounded-3xl px-4 h-7 font-semibold text-sm cursor-pointer"
+                  aria-labelledby="unpublish"
                   onClick={handlePublish}
                 >
                   Unpublish

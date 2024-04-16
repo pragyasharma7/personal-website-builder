@@ -12,6 +12,7 @@ export default function SaveChanges({
         <button
           className="text-sm text-[#A2A2A2] bg-[#E4E4E4] hover:bg-bgIconHover mr-2 w-[30px] h-[30px] rounded 
                       transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+          aria-labelledby="isToolbarVisible"
           onClick={handleIsToolbarVisible}
         >
           <TextAlignCenterIcon className="w-7 h-6 rounded" />
@@ -20,6 +21,7 @@ export default function SaveChanges({
           <button
             className="bg-transparent text-sm text-black mr-2 font-semibold mt-[5px]
                 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+            aria-labelledby="cancel"
             onClick={handleCancel}
           >
             Cancel
@@ -27,6 +29,7 @@ export default function SaveChanges({
           <button
             className="bg-bgBtn text-center rounded-3xl h-[30px] text-white text-sm w-[87px] font-semibold
             transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 ml-1 hover:bg-indigo-500 duration-300"
+            aria-labelledby="save"
             onClick={handleSave}
           >
             Save
