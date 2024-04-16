@@ -1,0 +1,21 @@
+{
+  "name": "Personal website builder",
+  "short_name": "Resume",
+  "description": "Now you can create your own custom resume in form of a website",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}
