@@ -3,7 +3,7 @@ import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
@@ -16,7 +16,7 @@ import { lexicalEditorConfig } from "../../../Config/LexicalEditorConfig";
 import { HashtagPlugin } from "@lexical/react/LexicalHashtagPlugin";
 import TreeViewPlugin from "./CustomPlugins/TreeViewPlugin/TreeViewPlugin";
 
-export default function LexicalTextarea({
+function LexicalTextarea({
   styles,
   placeholder,
   isCompEditable,
@@ -90,3 +90,4 @@ export default function LexicalTextarea({
     </LexicalComposer>
   );
 }
+export default memo(LexicalTextarea);

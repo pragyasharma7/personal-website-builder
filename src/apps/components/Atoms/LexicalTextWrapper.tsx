@@ -2,10 +2,10 @@ import { Box } from "@radix-ui/themes";
 import SaveChanges from "./SaveChanges";
 import ShowEditDelete from "./ShowEditDelete";
 import LexicalTextarea from "../Common/LexicalEditor/LexicalTextarea";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useSelector } from "react-redux";
 
-export default function LexicalTextWrapper({ styles, placeholder }) {
+function LexicalTextWrapper({ styles, placeholder }) {
   const lexicalEditableSlice = useSelector((store) => store.lexicalEditor);
 
   const [showSave, setshowSave] = useState(true);
@@ -81,3 +81,5 @@ export default function LexicalTextWrapper({ styles, placeholder }) {
     </Box>
   );
 }
+
+export default memo(LexicalTextWrapper);

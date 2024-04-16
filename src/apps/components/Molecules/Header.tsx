@@ -18,7 +18,9 @@ export default function Header({ scrollToRef }) {
     setIsMenuOpen(!isMenuOpen);
   };
   const handleClick = () => {
-    scrollToRef.current.scrollIntoView({ behavior: "smooth" });
+    if (scrollToRef.current) {
+      scrollToRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
   const handlePublish = () => {
     dispatch(isEditable(!lexicalEditableSlice.isEditable));
