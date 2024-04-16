@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addNavBarImage } from "../../State/SiteInfoSlice";
 import { ImageIcon } from "@radix-ui/react-icons";
 import { Navbar } from "../../Interface/Section";
-import { memo } from "react";
 
-function Navbar() {
+export default function Navbar() {
   const SiteInfoSlice: Navbar = useSelector((store) => store.siteInfo);
   const lexicalEditableSlice = useSelector((store) => store.lexicalEditor);
 
@@ -61,5 +60,3 @@ function Navbar() {
     </Box>
   );
 }
-
-export default memo(Navbar);
